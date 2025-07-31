@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: in-camera-vfx-backend
+    build:
+      context: .
+      dockerfile: ./Docker/node/DockerFile
+    ports:
+      - "30299:3099"
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    restart: 
+      always

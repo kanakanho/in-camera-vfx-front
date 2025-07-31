@@ -1,11 +1,11 @@
 import type { WSContext } from 'hono/ws'
-import type { ZSendMessage } from './type'
 import process from 'node:process'
 import { serve } from '@hono/node-server'
 import { createNodeWebSocket } from '@hono/node-ws'
 import { Hono } from 'hono'
 
 import { env } from 'hono/adapter'
+import z from 'zod'
 
 const app = new Hono()
 
@@ -13,7 +13,6 @@ const { injectWebSocket, upgradeWebSocket } = createNodeWebSocket({ app })
 
 app.get('/', (c) => {
   const { URL } = env<{ URL: string }>(c)
-  console.log('URL:', URL)
   return c.html(`<!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -101,16 +100,21 @@ app.get('/', (c) => {
 </html>`)
 })
 
+export const zSendMessage = z.object({
+  type: z.enum(['open', 'message', 'close', 'error']),
+  data: z.union([z.string(), z.instanceof(ArrayBuffer), z.unknown()]),
+})
+
+export type ZSendMessage = z.infer<typeof zSendMessage>
+
 const clients = new Set<WSContext>()
 
 app.get(
   '/wss',
   upgradeWebSocket(() => {
-    console.log(Date.now(), 'Client connected')
     return {
       async onOpen(_, ws) {
         clients.add(ws)
-        console.log('Client connected')
         Array.from(clients).forEach((client) => {
           const message: ZSendMessage = {
             type: 'open',
@@ -146,7 +150,6 @@ console.log(`Server listening on port ${port}`)
 
 const server = serve({
   fetch: app.fetch,
-  hostname: '0.0.0.0',
   port,
 })
 

@@ -17,7 +17,6 @@ export const zCameraControlSchema = z.object({
 
 export type ZCameraControl = z.infer<typeof zCameraControlSchema>
 
-// zSendMessageの定義例
 export const zSendMessage = z.object({
   type: z.enum(['open', 'message', 'close', 'error']),
   data: z.union([z.string(), z.instanceof(ArrayBuffer), z.unknown()]),
