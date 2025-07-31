@@ -1,0 +1,42 @@
+{
+  "name": "in-camera-vfx-front",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "server-start": "tsx watch --env-file=.env src/server.ts"
+  },
+  "dependencies": {
+    "jotai": "^2.12.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.178.0",
+    "zod": "^4.0.10"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^5.0.0",
+    "@eslint-react/eslint-plugin": "^1.52.3",
+    "@eslint/js": "^9.30.1",
+    "@hono/node-server": "^1.13.7",
+    "@hono/node-ws": "^1.0.5",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/three": "^0.178.1",
+    "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "hono": "^4.6.15",
+    "tsx": "^4.20.3",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.35.1",
+    "vite": "^7.0.4"
+  }
+}

@@ -1,0 +1,43 @@
+.menu {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+
+  opacity: 0;
+}
+
+.updateButton:hover {
+  cursor: pointer;
+}
+
+.updateButton {
+  width: 100%;
+  padding: 30px;
+}
+
+::backdrop {
+  border: none;
+}
+
+.inputMatrix {
+  padding: 30px 60px;
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 30px 0;
+
+  border: none;
+}
+
+.matrixParam {
+  padding: 10px 0;
+}
+
+.modal h2,
+h3 {
+  padding-top: 30px;
+}
